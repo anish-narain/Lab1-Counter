@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **env) {
             top->eval ();
         }
         top->rst = (i < 2);
-        top->en = (4<i & i<=13 | i >= 16);
+        top->en = (i < 2 | i == 8);
         if (Verilated::gotFinish()) exit(0);
     }
     tfp->close();
