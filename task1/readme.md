@@ -6,6 +6,7 @@
 * Opened the folder in VS Code 
 
 ## Step 3 ##
+
 ## Step 4 ##
 ## Step 5 ##
 ## Step 6 ##
