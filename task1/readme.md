@@ -55,3 +55,19 @@ Enable goes low at positive edge of clock cycle 15 meaning the counter stops cou
 Furthermore, the counter stops for 4 cycles instead of 3. This is because the enable gets set to high at i>17 or i=18, and then counter restarts at the clock cycle after that. Decreasing the range to i>=16 (i>15) fixed this issue.
 
 **2. Implement asynchronous reset**
+
+Adding posedge rst within the always_ff @() makes reset asynchronous
+
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/69715492/196984778-835abecd-34f6-4e94-9317-ec0076a86ff6.png">
+
+I set the reset to i==8.
+
+<img width="350" alt="image" src="https://user-images.githubusercontent.com/69715492/196984885-9dc991c0-a869-4301-bbc9-d3a8e6226ab0.png">
+
+Giving a waveform where the reset does not occur at the positive edge of the clock cycle
+
+<img width="786" alt="image" src="https://user-images.githubusercontent.com/69715492/196985652-07029d04-823f-4cc1-ab56-39189ed97dfa.png">
+
+
+
+
