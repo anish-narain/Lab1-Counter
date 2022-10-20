@@ -1,4 +1,4 @@
-# Task 1 Write-Up #
+# Task 1 #
 
 ## Steps 1 and 2 ##
 * Forked the github repo to my own github account
@@ -33,4 +33,9 @@ Line 12 tells us if rst is asserted, the counter is synchronously reset to 0. El
 
 As we can see, the counter starts at the positive edge after enable is set to 1. The reset is triggered at the rising edge of the clock cycle where it occurred. This is at the positive edge of cycle 16. At this edge, the counter is reset.
 
+## TEST YOURSELF CHALLENGES ##
+**Modify testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting** 
 
+
+
+**Implement asynchronous reset**
