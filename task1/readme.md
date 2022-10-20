@@ -1,4 +1,4 @@
-# Task 1 Write-Up #
+# Task 1 #
 
 ## Steps 1 and 2 ##
 * Forked the github repo to my own github account
@@ -33,4 +33,25 @@ Line 12 tells us if rst is asserted, the counter is synchronously reset to 0. El
 
 As we can see, the counter starts at the positive edge after enable is set to 1. The reset is triggered at the rising edge of the clock cycle where it occurred. This is at the positive edge of cycle 16. At this edge, the counter is reset.
 
+## TEST YOURSELF CHALLENGES ##
+**1. Modify testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting** 
+<img width="515" alt="image" src="https://user-images.githubusercontent.com/69715492/196978376-0ee430e4-8386-4bd5-bd15-c92dbdaa7793.png">
+* Got rid of the reset at clock cycle 15
+* Set enable to 0 from clock 15 to clock 17
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/69715492/196979455-c386eea2-5f03-439c-801a-f5489770b115.png">
 
+***Incorrect Approach***
+
+<img width="228" alt="image" src="https://user-images.githubusercontent.com/69715492/196974695-26e149a6-1dc1-412e-8559-5e5299d512e8.png">
+
+Removed (i==15) from top->rst condition (which was correct) but changed top->en condition to (4<i & i<15 | i>17)
+
+This produced the following waveform
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/69715492/196974820-64b04368-2051-4456-8e50-c4c30ca18f95.png">
+
+Enable goes low at positive edge of clock cycle 15 meaning the counter stops counting at clock cycle 16. Hence the counter already reaches 0A and then stops, instead of stopping at 09. Decreasing to i<=13 (i<14) fixed this issue. 
+
+Furthermore, the counter stops for 4 cycles instead of 3. This is because the enable gets set to high at i>17 or i=18, and then counter restarts at the clock cycle after that. Decreasing the range to i>=16 (i>15) fixed this issue.
+
+**2. Implement asynchronous reset**
