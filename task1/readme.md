@@ -6,13 +6,15 @@
 * Opened the folder in VS Code 
 
 ## Step 3 ##
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/69715492/196996431-6ade2f33-2555-4baf-941b-1951f9ee25e3.png">
 
+When reset is high the 'if' condition is met and the counter 
 ## Step 4 ##
 ## Step 5 ##
 ## Step 6 ##
 Opened counter.vcd file in gtkwave to get a waveform:
 
-<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/196927519-165f4c2b-0dbf-49d1-abe0-d73e3fa92f44.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/69715492/196927519-165f4c2b-0dbf-49d1-abe0-d73e3fa92f44.png">
 
 **How do the waveform signals work?**\
 **CLK**: goes up and down at fixed term intervals
