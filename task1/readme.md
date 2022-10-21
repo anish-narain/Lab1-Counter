@@ -6,10 +6,26 @@
 * Opened the folder in VS Code 
 
 ## Step 3 ##
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/69715492/196996431-6ade2f33-2555-4baf-941b-1951f9ee25e3.png">
+In this step, the counter module was instantiated in a new System Verilog file:
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/69715492/197180860-12b9a7fe-0549-4364-9853-43c6339eb11e.png">
 
-When reset is high the 'if' condition is met and the counter 
+When reset is high the 'if' condition is met and the counter value is set to 1'b0 with a bit length of the WIDTH parameter (stated as 8 bits when the counter was instantiated). 
+
+Else, the counter = previous counter + 8 bit incrementor. The 8 bit number is is formed by carrying out bitwise manipulation: {WIDTH-1{1'b0}, en}. The WIDTH - 1 means the most significant 7 bits is set to 0. The LSB = enable value. When enable value is high (1) the counter increments, otherwise (0) the counter is unchanged.
 ## Step 4 ##
+In this step, the test bench file was created.
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/69715492/197181477-ed2eccc6-3f83-4300-aa79-7ba6cc9f115d.png">
+
+The code above is a template for all other testbench files. It consists of various sections which have been explained.
+1. Header files
+2. Initiating i (index for loop) and clk variable (which links to system verilog counter file)
+3. Instantiate system verilog counter module in C++ code. This is the DUT
+4. For dumping waveform data to counter.vcd to then be viewed using GTKWave
+5. Set value of initial signal levels
+6. For loop for running the clock cycles
+7. Toggles clock
+8. Changes rst and en signals
 ## Step 5 ##
 ## Step 6 ##
 Opened counter.vcd file in gtkwave to get a waveform:
