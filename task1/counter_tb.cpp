@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **env) {
         }
         top->rst = (i<2 | i==8);
         top->en = (i>4);
+        top->eval();
         if (Verilated::gotFinish()) exit(0);
     }
     tfp->close();
