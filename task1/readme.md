@@ -12,6 +12,10 @@ In this step, the counter module was instantiated in a new System Verilog file:
 When reset is high the 'if' condition is met and the counter value is set to 1'b0 with a bit length of the WIDTH parameter (stated as 8 bits when the counter was instantiated). 
 
 Else, the counter = previous counter + 8 bit incrementor. The 8 bit number is is formed by carrying out bitwise manipulation and concatenation: {WIDTH-1{1'b0}, en}. The WIDTH - 1 means the most significant 7 bits is set to 0. The LSB = enable value. When enable value is high (1) the counter increments, otherwise (0) the counter is unchanged.
+
+The counter's functionality (combination of multiplexer and D-type flip-flop):
+<img width="943" alt="image" src="https://user-images.githubusercontent.com/69715492/197209833-10319aa3-0721-4f01-a037-1fdd17b019ca.png">
+
 ## Step 4 ##
 In this step, the test bench file was created.
 
