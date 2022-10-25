@@ -27,6 +27,7 @@ int main(int argc, char **argv, char **env) {
     top->clk = 1;
     top->rst = 1;
     top->en = 0;
+    top->vbdvalue = vbdValue();
 
     //run simulation for many clock cycles
     for (i=0; i<300; i++) {
@@ -40,7 +41,7 @@ int main(int argc, char **argv, char **env) {
         
         // Send count value to Vbuddy
         vbdPlot(int(top->count), 0, 255);
-        vbdValue();
+        vbdValue(int(top->vbdvalue));
         vbdCycle(i+1);
         // end of Vbuddy output section
         
