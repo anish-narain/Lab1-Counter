@@ -1,5 +1,5 @@
 //Header files (not name Vcounter.h for module counter)
-#include "Vcounter.h"
+#include "Vtop.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "vbuddy.cpp"
@@ -11,21 +11,23 @@ int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
     //instatiate the counter module as Vcounter
     //this is the DUT (name of all generated files)
-    Vcounter* top = new Vcounter;
+    Vtop* top = new Vtop;
     //turn on signal tracing and tell Verilator to
     //dump the waveform data to counter.vcd
     Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC;
     top->trace (tfp, 99);
-    tfp->open ("counter.vcd");
+    tfp->open ("top.vcd");
 
     //init Vbuddy
     if(vbdOpen()!=1) return(-1);
-    vbdHeader("Lab1 : Counter");
+    vbdHeader("Lab1 : top");
     
     //initialize simulation inputs
     top->clk = 1;
     top->rst = 0;
+    top->en = 1;
+
 
     //run simulation for many clock cycles
     for (i=0; i<300; i++) {
@@ -38,18 +40,14 @@ int main(int argc, char **argv, char **env) {
         }
         
         // Send count value to Vbuddy
-        vbdHex(4, (int(top->count))>> 16 & 0xF);
-        vbdHex(3, (int(top->count))>> 8 & 0xF);
-        vbdHex(2, (int(top->count))>> 4 & 0xF);
-        vbdHex(1, (int(top->count)) & 0xF);
+        vbdHex(4, (int(top->bcd))>> 12 & 0xF);
+        vbdHex(3, (int(top->bcd))>> 8 & 0xF);
+        vbdHex(2, (int(top->bcd))>> 4 & 0xF);
+        vbdHex(1, (int(top->bcd)) & 0xF);
         vbdCycle(i+1);
         // end of Vbuddy output section
         
-        //Step 1:::: START
-        top->v = vbdValue();
-        vbdSetMode(1);
-        top->ld = vbdFlag();
-        //Step 1:::: END
+        //change input stimuli
         
         if (Verilated::gotFinish()) exit(0);
     }

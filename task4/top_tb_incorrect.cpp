@@ -19,13 +19,10 @@ int main(int argc, char **argv, char **env) {
     top->trace (tfp, 99);
     tfp->open ("counter.vcd");
 
-    //init Vbuddy
-    if(vbdOpen()!=1) return(-1);
-    vbdHeader("Lab1 : Counter");
-    
     //initialize simulation inputs
     top->clk = 1;
-    top->rst = 0;
+    top->rst = 1;
+    top->en = 0;
 
     //run simulation for many clock cycles
     for (i=0; i<300; i++) {
@@ -34,29 +31,20 @@ int main(int argc, char **argv, char **env) {
         for (clk=0; clk<2; clk++) {
             tfp->dump (2*i+clk);
             top->clk = !top->clk;
-            top->eval();
+            top->eval ();
         }
         
         // Send count value to Vbuddy
-        vbdHex(4, (int(top->count))>> 16 & 0xF);
-        vbdHex(3, (int(top->count))>> 8 & 0xF);
-        vbdHex(2, (int(top->count))>> 4 & 0xF);
-        vbdHex(1, (int(top->count)) & 0xF);
+        vbdHex(4, (int(top->bcd))>> 12 & 0xF);
+        vbdHex(3, (int(top->bcd))>> 8 & 0xF);
+        vbdHex(2, (int(top->bcd))>> 4 & 0xF);
+        vbdHex(1, (int(top->bcd)) & 0xF);
         vbdCycle(i+1);
         // end of Vbuddy output section
-        
-        //Step 1:::: START
-        top->v = vbdValue();
-        vbdSetMode(1);
-        top->ld = vbdFlag();
-        //Step 1:::: END
-        
+
+        top->eval();
         if (Verilated::gotFinish()) exit(0);
     }
-    
-    vbdClose();
     tfp->close();
     exit(0);
 }
-
-
