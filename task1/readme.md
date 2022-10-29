@@ -16,6 +16,10 @@ Else, the counter = previous counter + 8 bit incrementor. The 8 bit number is is
 The counter's functionality (combination of multiplexer and D-type flip-flop):
 <img width="943" alt="image" src="https://user-images.githubusercontent.com/69715492/197209833-10319aa3-0721-4f01-a037-1fdd17b019ca.png">
 
+**What is always_ff @()?**\
+<img width="450" alt="image" src="https://user-images.githubusercontent.com/69715492/198828491-d6d05052-c536-4625-bb74-027d6254f571.png">
+
+
 ## Step 4 ##
 In this step, the test bench file was created.
 
