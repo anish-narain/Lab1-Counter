@@ -9,7 +9,7 @@ module counter #(
 );
 
 always_ff @ (posedge clk, posedge rst)
-    if (en) count <= count + {{WIDTH-1{1'b0}}, {1'b1}};
-    else count <= count - {{WIDTH-1{1'b0}}, {1'b1}};
+    if (rst) count <= {WIDTH{1'b0}};
+    else count <= count + {{WIDTH-1{1'b0}}, en};
 
 endmodule

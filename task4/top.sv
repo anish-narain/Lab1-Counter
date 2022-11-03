@@ -24,3 +24,4 @@ bin2bcd myDecoder (
 );
 
 endmodule
+`
