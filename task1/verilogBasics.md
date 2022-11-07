@@ -47,12 +47,52 @@ General format is N'Bxxxxx where N is number of bits, B is the base: b = binary,
 
 ## Bit Manipulation ##
 
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200432559-3c2d1e75-1086-4f20-818a-8748388a263b.png">
+
+{,} Use curly brackets for concatenation. Placing Width-1{1'b0} means making 1 bit binary number 0, have Width-1 number of bits (7 bits). 
+
+# Sequential and Combinational Logic #
+First note all of these key terms:
+
+* Combinational logic = does not depend on previous inputs/outputs. Only needs current input to determine output.
+  * Examples: half-adder, full-adder, multiplexer, demultiplexer
+* Sequential logic = requires past inputs/outputs to determine output. It is essentially a combinational circuit but with the additional properties of memory (to remember previous inputs) and feedback.
+  * Examples: latches, flip-flops, finite state machines
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200434090-1b0e123e-10ed-47a9-9802-1599ee3b697c.png">
+
+               *Sequential circuit*
+
+Sequential Logic can be of two forms:
+* Asynchronous: In asynchronous circuit, state of the device can change at any time (triggered by input event) and not dependant on the clock
+* Synchronous: state of the device only changes at discrete times in response to a clock signal
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200434803-150d8bdf-4204-499e-80e1-d52820bb8236.png">
+
+## Sequential Logic ##
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200435079-8c871c83-cc3e-4664-b3cb-d936468abf0a.png">
+
+How you specify synchronous vs asynchronous for reset:
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200435168-77f6ddf7-6295-4328-ba26-7a36d8689253.png">
+
+By defining reset withing @(), it means asynchronous can happen anytime the reset signal is asserted and does not depend on posedge of clk
+
+**Note: always_ff @() used to specify D flip-flops in System Verilog**
+
+One important thing to remember with sequential circuits is blocking vs non-blocking assignments. With sequential, always use blocking.
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/69715492/200435878-27b8da72-12fc-4225-80e2-7f921a63cbd3.png">
+
 ## Combinational Logic ##
 Combinational logic can be implemented using:
 * Always
 * Always-Case
 * If-Else
 * Casez
+
+always_comb used to specify combinational logic.
 
 **Always**
 
