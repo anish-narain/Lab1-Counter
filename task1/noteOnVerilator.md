@@ -2,7 +2,7 @@
 
 ## Key Ideas ##
 
-* **System Verilog** is a hardware description and verification language (HDL) for desigining digital hardware. It is a superset of Verilog (like mySQL for SQL). System Verilog adds object-oriented programming and is particularly suitable for register-transfer level design (RTL). System Verilog is commonly used for designing microprocessors like RISC-V
+* **System Verilog** is a hardware description and verification language (HDL) for designing digital hardware. It is a superset of Verilog (like mySQL for SQL). System Verilog adds object-oriented programming and is particularly suitable for register-transfer level design (RTL). System Verilog is commonly used for designing microprocessors like RISC-V
 * **Verilator** is a software package to simulate System Verilog designs. It is a cycle-accurate simulator rather than an event-driven simulator. This means:
   * Verilator signals can only be 1 or 0
   * Cannot evaluate glitches in the circuit
